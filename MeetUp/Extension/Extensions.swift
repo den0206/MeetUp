@@ -313,7 +313,7 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func createContainerView(withLabel : String, textField : UITextField) -> UIView {
+    func createContainerView(_ withLabel : String? = nil, textField : UITextField) -> UIView {
         
         let containerView = UIView()
         
@@ -321,14 +321,15 @@ extension UIViewController {
         textField.centerY(inView: containerView)
         textField.anchor(left: containerView.leftAnchor,bottom: containerView.bottomAnchor, right: containerView.rightAnchor)
         
-        let label = UILabel()
-        label.text = withLabel
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .white
-        containerView.addSubview(label)
-        
-        label.anchor(left : containerView.leftAnchor, bottom: textField.topAnchor,paddingLeft: 2,paddingBottom: 4)
-        
+        if withLabel != nil {
+            let label = UILabel()
+              label.text = withLabel
+              label.font = UIFont.systemFont(ofSize: 12)
+              label.textColor = .white
+              containerView.addSubview(label)
+              
+              label.anchor(left : containerView.leftAnchor, bottom: textField.topAnchor,paddingLeft: 2,paddingBottom: 4)
+        }
         let bottomLine = UILabel()
         bottomLine.backgroundColor = .white
         containerView.addSubview(bottomLine)
@@ -338,7 +339,7 @@ extension UIViewController {
         return containerView
     }
     
-    func createtextField(withPlaceholder : String, isSecureType : Bool) -> UITextField {
+    func createtextField(withPlaceholder : String, isSecureType : Bool, addBorder : Bool = false) -> UITextField {
         
         let tf = UITextField()
         tf.font = UIFont.systemFont(ofSize: 14)
@@ -348,8 +349,19 @@ extension UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: withPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         tf.autocapitalizationType = .none
         
+        if addBorder {
+            
+            let bottomLine = UILabel()
+            bottomLine.backgroundColor = .white
+            tf.addSubview(bottomLine)
+            
+            bottomLine.anchor(top: tf.bottomAnchor, left :tf.leftAnchor,right: tf.rightAnchor, paddingTop : 4,width: tf.frame.width,height: 0.75)
+            return tf
+        }
+        
         return tf
         
     }
 }
+
 

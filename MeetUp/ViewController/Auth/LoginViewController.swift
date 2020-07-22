@@ -29,7 +29,7 @@ class LoginViewController : UIViewController {
     
     lazy var emailContainerView : UIView = {
         
-        return createContainerView(withLabel: "Email", textField: emaiTextField)
+        return createContainerView("Email", textField: emaiTextField)
 
     }()
     
@@ -38,7 +38,7 @@ class LoginViewController : UIViewController {
     }()
     
     private lazy var passwordContainerView : UIView = {
-        return createContainerView(withLabel: "Password", textField: passwordTextField)
+        return createContainerView("Password", textField: passwordTextField)
     }()
     
     private lazy var passwordTextField : UITextField = {
@@ -52,16 +52,30 @@ class LoginViewController : UIViewController {
         return button
     }()
     
-    private let loginButton : GradientButton = {
-        let button = GradientButton(leftColor: #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), rightColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))
-        button.setTitle("Login", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+    private let loginButton : UIButton = {
+        let button = UIButton(type: .system)
+//        button.setTitle("Login", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 35 / 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         
+        button.setBackgroundImage(#imageLiteral(resourceName: "signin"), for: .normal)
+        
+        return button
+    }()
+    
+    let dontHaveAccountButton : UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributeTitle = NSMutableAttributedString(string: "アカウントを持っていませんか?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        
+        attributeTitle.append(NSMutableAttributedString(string: " Sign Up", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray]))
+        
+        button.setAttributedTitle(attributeTitle, for: .normal)
+        button.addTarget(self, action: #selector(presentSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -98,11 +112,22 @@ class LoginViewController : UIViewController {
         view.addSubview(stack)
         stack.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor,right: view.rightAnchor, paddingTop: 80, paddingLeft: 24,paddingRight: 24)
         
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.centerX(inView: view)
+        dontHaveAccountButton.anchor(bottom : view.safeAreaLayoutGuide.bottomAnchor, paddingBottom:  12)
+        
+        
     }
     
     //MARK: - Actions
     
     @objc func handleLogin() {
         print("Login")
+    }
+    
+    @objc func presentSignUp() {
+        
+        let signupVC = SignUpViewController()
+        present(signupVC, animated: true, completion: nil)
     }
 }
