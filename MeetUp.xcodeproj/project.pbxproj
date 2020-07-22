@@ -3,27 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */; };
 		3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */; };
-		3A63CB2F24C871F8005E8A6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2E24C871F8005E8A6D /* ViewController.swift */; };
-		3A63CB3224C871F8005E8A6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3024C871F8005E8A6D /* Main.storyboard */; };
 		3A63CB3424C871FA005E8A6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3324C871FA005E8A6D /* Assets.xcassets */; };
 		3A63CB3724C871FA005E8A6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3524C871FA005E8A6D /* LaunchScreen.storyboard */; };
+		3A63CB3F24C873C0005E8A6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3E24C873C0005E8A6D /* GoogleService-Info.plist */; };
+		3A63CB4224C878F7005E8A6D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4124C878F7005E8A6D /* LoginViewController.swift */; };
+		3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4424C8795E005E8A6D /* Extensions.swift */; };
+		3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4624C879BA005E8A6D /* Reachbility.swift */; };
+		3A63CB4924C88690005E8A6D /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4824C88690005E8A6D /* GradientButton.swift */; };
+		B9B92D22F2BD83B3BBA18265 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786467AC5395C5E23901881 /* Pods_MeetUp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14979ABCD10151B3D0EDEB3E /* Pods-MeetUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.debug.xcconfig"; sourceTree = "<group>"; };
 		3A63CB2724C871F8005E8A6D /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3A63CB2E24C871F8005E8A6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3A63CB3124C871F8005E8A6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A63CB3324C871FA005E8A6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A63CB3624C871FA005E8A6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A63CB3824C871FA005E8A6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A63CB3E24C873C0005E8A6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A63CB4124C878F7005E8A6D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3A63CB4424C8795E005E8A6D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3A63CB4624C879BA005E8A6D /* Reachbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachbility.swift; sourceTree = "<group>"; };
+		3A63CB4824C88690005E8A6D /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		6786467AC5395C5E23901881 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B92D22F2BD83B3BBA18265 /* Pods_MeetUp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39429F7682EA412E6C53EC2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14979ABCD10151B3D0EDEB3E /* Pods-MeetUp.debug.xcconfig */,
+				FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3A63CB1E24C871F8005E8A6D = {
 			isa = PBXGroup;
 			children = (
 				3A63CB2924C871F8005E8A6D /* MeetUp */,
 				3A63CB2824C871F8005E8A6D /* Products */,
+				39429F7682EA412E6C53EC2F /* Pods */,
+				C0FD9BFEE877ADC79FEA75B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +80,40 @@
 			children = (
 				3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */,
 				3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */,
-				3A63CB2E24C871F8005E8A6D /* ViewController.swift */,
-				3A63CB3024C871F8005E8A6D /* Main.storyboard */,
+				3A63CB4024C878E3005E8A6D /* ViewController */,
+				3A63CB4324C87945005E8A6D /* Extension */,
 				3A63CB3324C871FA005E8A6D /* Assets.xcassets */,
 				3A63CB3524C871FA005E8A6D /* LaunchScreen.storyboard */,
 				3A63CB3824C871FA005E8A6D /* Info.plist */,
+				3A63CB3E24C873C0005E8A6D /* GoogleService-Info.plist */,
 			);
 			path = MeetUp;
+			sourceTree = "<group>";
+		};
+		3A63CB4024C878E3005E8A6D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A63CB4124C878F7005E8A6D /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3A63CB4324C87945005E8A6D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3A63CB4424C8795E005E8A6D /* Extensions.swift */,
+				3A63CB4624C879BA005E8A6D /* Reachbility.swift */,
+				3A63CB4824C88690005E8A6D /* GradientButton.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C0FD9BFEE877ADC79FEA75B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6786467AC5395C5E23901881 /* Pods_MeetUp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A63CB3B24C871FA005E8A6D /* Build configuration list for PBXNativeTarget "MeetUp" */;
 			buildPhases = (
+				C5EC3AAA251368805C3F63AA /* [CP] Check Pods Manifest.lock */,
 				3A63CB2324C871F8005E8A6D /* Sources */,
 				3A63CB2424C871F8005E8A6D /* Frameworks */,
 				3A63CB2524C871F8005E8A6D /* Resources */,
+				99CBA97FC08F9B72FD703767 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +178,71 @@
 			files = (
 				3A63CB3724C871FA005E8A6D /* LaunchScreen.storyboard in Resources */,
 				3A63CB3424C871FA005E8A6D /* Assets.xcassets in Resources */,
-				3A63CB3224C871F8005E8A6D /* Main.storyboard in Resources */,
+				3A63CB3F24C873C0005E8A6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99CBA97FC08F9B72FD703767 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetUp/Pods-MeetUp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetUp/Pods-MeetUp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetUp/Pods-MeetUp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5EC3AAA251368805C3F63AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeetUp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A63CB2324C871F8005E8A6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A63CB2F24C871F8005E8A6D /* ViewController.swift in Sources */,
+				3A63CB4224C878F7005E8A6D /* LoginViewController.swift in Sources */,
+				3A63CB4924C88690005E8A6D /* GradientButton.swift in Sources */,
 				3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */,
+				3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */,
 				3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */,
+				3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3A63CB3024C871F8005E8A6D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3A63CB3124C871F8005E8A6D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3A63CB3524C871FA005E8A6D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,6 +370,7 @@
 		};
 		3A63CB3C24C871FA005E8A6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14979ABCD10151B3D0EDEB3E /* Pods-MeetUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +389,7 @@
 		};
 		3A63CB3D24C871FA005E8A6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
