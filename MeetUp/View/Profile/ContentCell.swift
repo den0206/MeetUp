@@ -8,13 +8,25 @@
 
 import UIKit
 
+protocol ContentCellDelegate : class {
+    
+    func handlesettingButton()
+    func handleCameraButton()
+    func handleEditButton()
+}
+
 class ContentCell : UITableViewCell {
+    
+    weak var delegate : ContentCellDelegate?
     
     //MARK: - Parts
     
     private let backView : UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 100
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         return view
     }()
     
@@ -45,28 +57,34 @@ class ContentCell : UITableViewCell {
     
     /// buttons
     
-    let settingButton : UIButton = {
+    lazy var settingButton : UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "settings"), for: .normal)
+        button.addTarget(self, action: #selector(tappedSettings), for: .touchUpInside)
 
         return button
     }()
     
-    let cameraButton : UIButton = {
+    lazy var cameraButton : UIButton = {
         let button = UIButton(type: .system)
              button.setBackgroundImage(#imageLiteral(resourceName: "camera"), for: .normal)
+        button.addTarget(self, action: #selector(tappedCamera), for: .touchUpInside)
+
         return button
     }()
     
-    let editButton : UIButton = {
+    lazy var editButton : UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "edit"), for: .normal)
+        button.addTarget(self, action: #selector(tappedEdit), for: .touchUpInside)
         return button
     }()
 
     //MARK: -
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = .lightGray
         
         addSubview(backView)
         backView.fillSuperview()
@@ -96,6 +114,18 @@ class ContentCell : UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Actions
+    @objc func tappedSettings() {
+        delegate?.handlesettingButton()
+    }
+
+    @objc func tappedCamera() {
+        delegate?.handleCameraButton()
+    }
+    @objc func tappedEdit() {
+        delegate?.handleEditButton()
     }
     
 }

@@ -11,7 +11,7 @@ import UIKit
 class AboutCell : UITableViewCell {
     
     //MARK: - Parts
-    
+
     private let titleLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
@@ -19,8 +19,10 @@ class AboutCell : UITableViewCell {
         return label
     }()
     
-    private let textView : UITextView = {
+    let textView : UITextView = {
         let tv = UITextView()
+        tv.clipsToBounds = true
+        tv.layer.cornerRadius = 10
         return tv
     }()
     
@@ -28,7 +30,9 @@ class AboutCell : UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = .systemGroupedBackground
+        contentView.backgroundColor = .lightGray
+        
+        
         addSubview(titleLabel)
         titleLabel.anchor(top : topAnchor,left : leftAnchor, paddingTop: 8,paddingLeft: 8)
         addSubview(textView)
