@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var authListner : AuthStateDidChangeListenerHandle?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,9 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        window?.rootViewController = LoginViewController()
-        window?.makeKeyAndVisible()
+        
+        autoLogin(scene)
+    
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -49,6 +51,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    //MARK: - AUtoLogin
+    
+    func autoLogin(_ scene : UIWindowScene) {
+        authListner = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            
+            Auth.auth().removeStateDidChangeListener(self.authListner!)
+            
+            if user != nil && UserDefaults.standard.object(forKey: kCURRENTUSER) != nil {
+                /// alrerady Lopgin
+                DispatchQueue.main.async {
+                    self.goToApp(scene)
+ 
+                }
+            } else {
+                self.window = UIWindow(windowScene: scene)
+                self.window?.rootViewController = LoginViewController()
+                self.window?.makeKeyAndVisible()
+            }
+            
+            
+        })
+    }
+    
+    func goToApp(_ scene : UIWindowScene) {
+        
+        self.window = UIWindow(windowScene: scene)
+        self.window?.rootViewController = MainTabBarController()
+        self.window?.makeKeyAndVisible()
+        
     }
 
 

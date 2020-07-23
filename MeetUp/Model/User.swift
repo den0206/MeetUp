@@ -81,6 +81,8 @@ class User : Equatable {
         ])
     }
     
+
+    
     init(_uid : String, _email : String, _username: String,_city : String,_dateOfBirth : Date, _isMale : Bool, _avatarLink : String = "") {
         
         uid = _uid
@@ -101,6 +103,31 @@ class User : Equatable {
     }
     
     
+    init(_dictionary : NSDictionary) {
+        uid = _dictionary[kUID] as? String ?? ""
+        email = _dictionary[kEMAIL] as? String ?? ""
+        userName = _dictionary[kUSERNAME] as? String ?? ""
+        isMale = _dictionary[kISMALE] as? Bool ?? true
+        avatarLink = _dictionary[kAVATARLINK] as? String ?? ""
+        profession = _dictionary[kPROFISSION] as? String ?? ""
+        jobTitle = _dictionary[kJOBTITLE] as? String ?? ""
+        city = _dictionary[kCITY] as? String ?? ""
+        country = _dictionary[kCOUNYRY] as? String ?? ""
+        height = _dictionary[kHEIGHT] as? Double ?? 0.0
+        lookingFor = _dictionary[kLOOKINGFOR] as? String ?? ""
+        likedIdArray = _dictionary[kLIKEIDARRAY] as? [String]
+        imageLinks = _dictionary[kLOOKINGFOR] as? [String]
+        about = _dictionary[kABOUT] as? String ?? ""
+        pushId = _dictionary[kPUSHID] as? String ?? ""
+        
+        if let date = _dictionary[kDATEOFBIRTH] as? Timestamp {
+            dateOfBirth = date.dateValue()
+        } else {
+            dateOfBirth = _dictionary[kDATEOFBIRTH] as? Date ?? Date()
+        }
+        
+    }
+    
     //MARK: - Functions
     
     class func loginUser(withEmal : String, password : String, completion :  @escaping(_ error: Error?, _ isEmailVerfied : Bool) -> Void) {
@@ -115,7 +142,10 @@ class User : Equatable {
                 return
             }
             
+            guard let uid = result?.user.uid else {return}
             /// exist FB
+            FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid, email: withEmal)
+            
             completion(nil, true)
         }
     }
@@ -142,10 +172,28 @@ class User : Equatable {
         }
     }
     
+    //MARK: - ResendLink
+    
+    class func resetPasswordfor(email : String, completion : @escaping(_ error : Error?) -> Void) {
+        
+        Auth.auth().currentUser?.reload(completion: { (error) in
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                
+                completion(error)
+            })
+        })
+    }
+    //MARK: - Save User
+    
     func saveUserLocaly() {
         UserDefaults.standard.set(self.userDictionary, forKey: kCURRENTUSER)
         UserDefaults.standard.synchronize()
         
+    }
+    
+    func saveUserToFireStore() {
+        
+        FirebaseReference(reference: .User).document(self.uid).setData(self.userDictionary as! [String : Any])
     }
     
     

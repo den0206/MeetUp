@@ -144,6 +144,7 @@ class LoginViewController : UIViewController {
                 return
             }
             
+            self.goToApp()
             
             
             
@@ -157,6 +158,16 @@ class LoginViewController : UIViewController {
             ProgressHUD.showError("Emailが足りません")
             return
         }
+        
+        User.resetPasswordfor(email: emaiTextField.text!) { (error) in
+            
+            guard error != nil  else {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            
+            ProgressHUD.showSuccess("Please che your email")
+        }
             
     }
     
@@ -168,5 +179,14 @@ class LoginViewController : UIViewController {
     
     @objc func dismissKeyBord() {
         view.endEditing(false)
+    }
+    
+    //MARK: -Navigation
+    
+    private func goToApp() {
+        let mainVC = MainTabBarController()
+        mainVC.modalPresentationStyle = .fullScreen
+        
+        self.present(mainVC, animated: true, completion: nil)
     }
 }
