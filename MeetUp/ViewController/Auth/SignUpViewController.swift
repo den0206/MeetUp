@@ -12,6 +12,7 @@ import ProgressHUD
 class SignUpViewController : UIViewController {
     
     var isMale = true
+    var datePicker = UIDatePicker()
     
     //MARK: - Parts
     
@@ -98,6 +99,7 @@ class SignUpViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        setupDatePicker()
     }
     
     //MARK: - UI
@@ -130,7 +132,30 @@ class SignUpViewController : UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBord))
         backgroundImageView.addGestureRecognizer(tap)
+ 
+    }
+    
+    private func setupDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(handleDatePicer), for: .valueChanged)
+        /// et field
+        birthField.inputView = datePicker
         
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = .black
+        toolBar.sizeToFit()
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissKeyBord))
+        
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton =  UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyBord))
+        
+        toolBar.setItems([cancelButton,spaceButton,doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        birthField.inputAccessoryView = toolBar
         
         
     }
@@ -138,9 +163,7 @@ class SignUpViewController : UIViewController {
     //MARK: - Actions
     
     @objc func handleSignUp() {
-        
-     
-        
+
         guard isTextDataIsFilled() else {
             ProgressHUD.showError("項目を埋めてください")
             return
@@ -152,23 +175,38 @@ class SignUpViewController : UIViewController {
         }
         
         ProgressHUD.show()
-        
         /// sign up
+
         
-        User.signUpUser(withEmail: emailField.text!, password: passwordField.text!, userName: userNameField.text!, city: cityField.text!, isMale: isMale, daterOfBirth: Date()) { (error) in
+        User.signUpUser(withEmail: emailField.text!, password: passwordField.text!, userName: userNameField.text!, city: cityField.text!, isMale: isMale, dateOfBirth: Date()) { (error) in
             
+            guard error == nil else {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
             
-            guard error != nil else {ProgressHUD.showError(error!.localizedDescription)
-                return}
-            
-            ProgressHUD.showSucceed("email has Sented")
-            
+            ProgressHUD.showSuccess("Success")
             self.dismiss(animated: true, completion: nil)
-            
             
             
         }
         
+        /// sign up
+//
+//        User.signUpUser(withEmail: emailField.text!, password: passwordField.text!, userName: userNameField.text!, city: cityField.text!, isMale: isMale, daterOfBirth: Date()) { (error) in
+//
+//
+//            guard error != nil else {ProgressHUD.showError(error!.localizedDescription)
+//                return}
+//
+//            ProgressHUD.showSucceed("email has Sented")
+//
+//            self.dismiss(animated: true, completion: nil)
+//
+//
+//
+//        }
+//
         
     }
     
@@ -185,6 +223,11 @@ class SignUpViewController : UIViewController {
         isMale = sender.selectedSegmentIndex == 0 ? true : false
         print(isMale)
     }
+    
+    @objc func handleDatePicer() {
+        birthField.text = datePicker.date.longDate()
+    }
+    
     
     private func isTextDataIsFilled() -> Bool {
         return userNameField.text != "" && emailField.text != "" && cityField.text != "" && birthField.text != "" && passwordField.text != "" && passwordConfirmationField.text != ""

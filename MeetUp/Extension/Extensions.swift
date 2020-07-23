@@ -13,6 +13,34 @@ public struct AnchoredConstraints {
     public var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
 }
 
+extension UIColor {
+    
+    func  primary() -> UIColor {
+        return UIColor(red: 255/255, green: 45/255, blue: 68/255, alpha: 1)
+    }
+    
+    func tabBarSelectedColor() -> UIColor{
+        return UIColor(red: 255/255, green: 216/255, blue: 223/255, alpha: 1)
+    }
+}
+
+extension Date {
+    
+    func longDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        return dateFormatter.string(from: self)
+    }
+    
+    func stringDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMMyyyyHHmmSS"
+        
+        return dateFormatter.string(from: self)
+    }
+}
+
 
 extension UIView {
     

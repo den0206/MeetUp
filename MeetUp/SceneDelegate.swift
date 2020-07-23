@@ -58,7 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func autoLogin(_ scene : UIWindowScene) {
         authListner = Auth.auth().addStateDidChangeListener({ (auth, user) in
             
-            Auth.auth().removeStateDidChangeListener(self.authListner!)
+//            Auth.auth().removeStateDidChangeListener(self.authListner!)
             
             if user != nil && UserDefaults.standard.object(forKey: kCURRENTUSER) != nil {
                 /// alrerady Lopgin

@@ -133,16 +133,17 @@ class LoginViewController : UIViewController {
             return
         }
         
-        User.loginUser(withEmal: emaiTextField.text!, password: passwordTextField.text!) { (error, isVerified) in
+        ProgressHUD.show()
+        
+        User.loginUser(withEmal: emaiTextField.text!, password: passwordTextField.text!) { (error) in
             
-            guard error != nil else {
+            if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
-                return}
-            
-            guard isVerified else {
-                ProgressHUD.showError("no verified")
                 return
             }
+
+            
+//            ProgressHUD.dismiss()
             
             self.goToApp()
             

@@ -130,47 +130,83 @@ class User : Equatable {
     
     //MARK: - Functions
     
-    class func loginUser(withEmal : String, password : String, completion :  @escaping(_ error: Error?, _ isEmailVerfied : Bool) -> Void) {
+    class func loginUser(withEmal : String, password : String, completion :  @escaping(_ error: Error?) -> Void) {
+        
         Auth.auth().signIn(withEmail: withEmal, password: password) { (result, error) in
-            guard error != nil else {completion(error, false)
+            guard error == nil else {completion(error)
                 return
             }
-            
-            guard (result?.user.isEmailVerified)! else {
-                print("No Verified")
-                completion(error, false)
-                return
-            }
-            
             guard let uid = result?.user.uid else {return}
-            /// exist FB
-            FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid, email: withEmal)
+            print(uid)
+            /// set currentUser
+            FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid)
             
-            completion(nil, true)
+        
         }
     }
     
-    class func signUpUser(withEmail : String, password : String, userName: String, city : String, isMale : Bool, daterOfBirth : Date, completion : @escaping(_ error : Error?) -> Void) {
-        
+  
+    
+    class func signUpUser(withEmail : String, password : String, userName : String, city : String, isMale : Bool,dateOfBirth : Date, completion : @escaping(_ error : Error?) -> Void) {
         Auth.auth().createUser(withEmail: withEmail, password: password) { (result, error) in
             
-            guard error != nil else { completion(error!)
-                return}
-            
-            result?.user.sendEmailVerification(completion: { (error) in
-                print("Auth email")
-            })
+            guard error == nil else {completion(error)
+                return
+            }
             
             if result?.user != nil {
                 guard let uid = result?.user.uid else {return}
+                let user = User(_uid: uid, _email: withEmail, _username: userName, _city: city, _dateOfBirth: dateOfBirth, _isMale: isMale)
                 
-                let user = User(_uid: uid, _email: withEmail, _username: userName, _city: city, _dateOfBirth: daterOfBirth, _isMale: isMale)
-  
                 user.saveUserLocaly()
+                user.saveUserToFireStore()
             }
-            
         }
     }
+    
+    //MARK: - email Verification
+    
+//    class func loginUserWithVerification(withEmal : String, password : String, completion :  @escaping(_ error: Error?, _ isEmailVerfied : Bool) -> Void) {
+//          Auth.auth().signIn(withEmail: withEmal, password: password) { (result, error) in
+//              guard error != nil else {completion(error, false)
+//                  return
+//              }
+//
+//              guard (result?.user.isEmailVerified)! else {
+//                  print("No Verified")
+//                  completion(error, false)
+//                  return
+//              }
+//
+//              guard let uid = result?.user.uid else {return}
+//              /// exist FB
+//              FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid, email: withEmal)
+//
+//              completion(nil, true)
+//          }
+//      }
+    
+//    class func signUpUserWithVerification(withEmail : String, password : String, userName: String, city : String, isMale : Bool, daterOfBirth : Date, completion : @escaping(_ error : Error?) -> Void) {
+//
+//        Auth.auth().createUser(withEmail: withEmail, password: password) { (result, error) in
+//
+//            guard error == nil else { completion(error!)
+//                return}
+//
+//            result?.user.sendEmailVerification(completion: { (error) in
+//                print("Auth email")
+//            })
+//
+//            if result?.user != nil {
+//                guard let uid = result?.user.uid else {return}
+//
+//                let user = User(_uid: uid, _email: withEmail, _username: userName, _city: city, _dateOfBirth: daterOfBirth, _isMale: isMale)
+//
+//                user.saveUserLocaly()
+//            }
+//
+//        }
+//    }
     
     //MARK: - ResendLink
     
