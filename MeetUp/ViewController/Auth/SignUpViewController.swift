@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignUpViewController : UIViewController {
+    
+    var isMale = true
     
     //MARK: - Parts
     
@@ -22,6 +25,7 @@ class SignUpViewController : UIViewController {
     }()
     private let backgroundImageView : UIImageView = {
         let iv = UIImageView()
+        iv.isUserInteractionEnabled = true
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "loginBavkground")
         return iv
@@ -50,6 +54,7 @@ class SignUpViewController : UIViewController {
     private let sexSegmentControll : UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Male", "Femail"])
         sc.tintColor = UIColor(white: 1, alpha: 0.87)
+        sc.addTarget(self, action: #selector(segmentChange(_ :)), for: .valueChanged)
         sc.selectedSegmentIndex = 0
         return sc
     }()
@@ -123,17 +128,66 @@ class SignUpViewController : UIViewController {
         alreadyHaveAccountButton.centerX(inView: view)
         alreadyHaveAccountButton.anchor(bottom : view.safeAreaLayoutGuide.bottomAnchor, paddingBottom:  12)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBord))
+        backgroundImageView.addGestureRecognizer(tap)
+        
+        
         
     }
     
     //MARK: - Actions
     
     @objc func handleSignUp() {
-        print("SignUP")
+        
+     
+        
+        guard isTextDataIsFilled() else {
+            ProgressHUD.showError("項目を埋めてください")
+            return
+        }
+        
+        guard passwordField.text == passwordConfirmationField.text else {
+            ProgressHUD.showError("パスワードが一致しません")
+            return
+        }
+        
+        ProgressHUD.show()
+        
+        /// sign up
+        
+        User.signUpUser(withEmail: emailField.text!, password: passwordField.text!, userName: userNameField.text!, city: cityField.text!, isMale: isMale, daterOfBirth: Date()) { (error) in
+            
+            
+            guard error != nil else {ProgressHUD.showError(error!.localizedDescription)
+                return}
+            
+            ProgressHUD.showSucceed("email has Sented")
+            
+            self.dismiss(animated: true, completion: nil)
+            
+            
+            
+        }
+        
+        
     }
     
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyBord() {
+        view.endEditing(false)
+        
+    }
+    
+    @objc func segmentChange(_ sender : UISegmentedControl) {
+        isMale = sender.selectedSegmentIndex == 0 ? true : false
+        print(isMale)
+    }
+    
+    private func isTextDataIsFilled() -> Bool {
+        return userNameField.text != "" && emailField.text != "" && cityField.text != "" && birthField.text != "" && passwordField.text != "" && passwordConfirmationField.text != ""
     }
     
 }

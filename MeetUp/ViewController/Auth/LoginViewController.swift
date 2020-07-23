@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class LoginViewController : UIViewController {
     
@@ -14,6 +15,7 @@ class LoginViewController : UIViewController {
     
     private let backgroundImageView : UIImageView = {
         let iv = UIImageView()
+        iv.isUserInteractionEnabled = true
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "loginBavkground")
         return iv
@@ -49,6 +51,7 @@ class LoginViewController : UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Forgot Password?", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(fogotButtonPress), for: .touchUpInside)
         return button
     }()
     
@@ -116,18 +119,54 @@ class LoginViewController : UIViewController {
         dontHaveAccountButton.centerX(inView: view)
         dontHaveAccountButton.anchor(bottom : view.safeAreaLayoutGuide.bottomAnchor, paddingBottom:  12)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBord))
+        backgroundImageView.addGestureRecognizer(tap)
+        
         
     }
     
     //MARK: - Actions
     
     @objc func handleLogin() {
-        print("Login")
+        guard emaiTextField.text != "" && passwordTextField.text != "" else {
+            ProgressHUD.showError("項目を埋めてください")
+            return
+        }
+        
+        User.loginUser(withEmal: emaiTextField.text!, password: passwordTextField.text!) { (error, isVerified) in
+            
+            guard error != nil else {
+                ProgressHUD.showError(error!.localizedDescription)
+                return}
+            
+            guard isVerified else {
+                ProgressHUD.showError("no verified")
+                return
+            }
+            
+            
+            
+            
+        }
+        
+    }
+    
+    @objc func fogotButtonPress() {
+        
+        guard emaiTextField.text != ""  else {
+            ProgressHUD.showError("Emailが足りません")
+            return
+        }
+            
     }
     
     @objc func presentSignUp() {
         
         let signupVC = SignUpViewController()
         present(signupVC, animated: true, completion: nil)
+    }
+    
+    @objc func dismissKeyBord() {
+        view.endEditing(false)
     }
 }
