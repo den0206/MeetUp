@@ -196,6 +196,19 @@ class User : Equatable {
         }
     }
     
+    class func logOutCurrentUser(comletion :  @escaping(_ error : Error?) -> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            UserDefaults.standard.removeObject(forKey: kCURRENTUSER)
+            UserDefaults.standard.synchronize()
+        
+
+        } catch let error{
+            comletion(error)
+        }
+    }
+    
     //MARK: - email Verification
     
 //    class func loginUserWithVerification(withEmal : String, password : String, completion :  @escaping(_ error: Error?, _ isEmailVerfied : Bool) -> Void) {
@@ -240,9 +253,32 @@ class User : Equatable {
 //        }
 //    }
     
+    //MARK: - Edit uer profile
+    
+    func updateUserEmail(email : String, completion :  @escaping(_ error : Error?) -> Void) {
+        
+        Auth.auth().currentUser?.updateEmail(to: email, completion: { (error) in
+            if error != nil {
+                completion(error)
+                return
+            }
+            
+            
+            /// resend vertification Email (no use)
+//            User.resendVerificationEmail(email: email) { (error) in
+//
+//                if error != nil {
+//                    completion(error)
+//                    return
+//                }
+//            }
+        })
+    }
+
+    
     //MARK: - ResendLink
     
-    class func resetPasswordfor(email : String, completion : @escaping(_ error : Error?) -> Void) {
+    class func resendVerificationEmail(email : String, completion : @escaping(_ error : Error?) -> Void) {
         
         Auth.auth().currentUser?.reload(completion: { (error) in
             Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
@@ -250,6 +286,12 @@ class User : Equatable {
                 completion(error)
             })
         })
+    }
+    
+    class func resetPasword(email : String, completion :  @escaping(_ error : Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
     }
     //MARK: - Save User
     

@@ -53,6 +53,24 @@ extension Date {
     
     
 }
+//
+//extension UIImage {
+//    var isPortrait : Bool { return size.height > self.size.width}
+//    var isLabdscape : Bool { return size.width > self.size.height}
+//
+//    var breath : CGFloat {return min(size.width, size.height)}
+//    var breathSize : CGSize {return CGSize(width: breath, height: breath)}
+//
+//    var breathRect : CGRect {return CGRect(origin: .zero, size: breathSize)}
+//
+//    var circleMasked : UIImage? {
+//        UIGraphicsBeginImageContextWithOptions(breathSize, false, scale)
+//
+//        defer { UIGraphicsEndImageContext()}
+//
+//        guard let cgImage = cgImage?.cropping(to: CGRect(origin: CGPoint(x: isLabdscape ? floor((size.width - size.height) / 2) : 0, y: isPortrait ? floor((size.height - size.width) / 2) : 0), size: breathSize)) else {return nil}
+//    }
+//}
 
 
 

@@ -160,7 +160,7 @@ class LoginViewController : UIViewController {
             return
         }
         
-        User.resetPasswordfor(email: emaiTextField.text!) { (error) in
+        User.resetPasword(email: emaiTextField.text!) { (error) in
             
             guard error != nil  else {
                 ProgressHUD.showError(error!.localizedDescription)

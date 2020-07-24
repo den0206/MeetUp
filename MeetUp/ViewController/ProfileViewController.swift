@@ -28,6 +28,8 @@ class ProfileViewController : UITableViewController {
     var avatarImage : UIImage?
     var gallry : GalleryController!
     
+    var alertTextField : UITextField!
+    
     init(user : User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -228,19 +230,75 @@ extension ProfileViewController : ContentCellDelegate {
         let alertController = UIAlertController(title: "Edit Account", message: "can Edit", preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Change Email", style: .default, handler: { (alert) in
-            print("email")
+            self.showChangeField(value: "Email")
         }))
         
         alertController.addAction(UIAlertAction(title: "Change Name", style: .default, handler: { (alert) in
-            print("name")
+            self.showChangeField(value: "Name")
         }))
         alertController.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (alert) in
-            print("logout")
+            self.logOutUser()
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showChangeField(value : String) {
+        
+        let alertView = UIAlertController(title: "Updating\(value)", message: "書き込んでください", preferredStyle: .alert)
+        alertView.addTextField { (tf) in
+            self.alertTextField = tf
+            self.alertTextField.placeholder = "New \(value)"
+
+        }
+        
+        alertView.addAction(UIAlertAction(title: "Update", style: .destructive, handler: { (action) in
+            self.updateUserWith(value: value)
+        }))
+        
+        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertView, animated: true, completion: nil)
+    }
+    
+    //MARK: - Change User info
+    
+    private func updateUserWith(value : String) {
+        
+        guard alertTextField.text != "" else {ProgressHUD.showError("書き込みがありません"); return}
+        
+        if value == "Email" {
+            changeEmail()
+        } else {
+            changeUsername()
+        }
+    }
+    
+    private func changeEmail() {
+        
+        guard let email = alertTextField.text else {return}
+        
+        user.updateUserEmail(email: email) { (error) in
+            
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            
+            self.user.email = email
+            self.saveUserData(user: self.user)
+            
+            ProgressHUD.showSucceed("Change succes")
+        }
+    }
+    
+    private func changeUsername() {
+        
+        user.userName = alertTextField.text!
+        saveUserData(user: user)
+        tableView.reloadData()
     }
     
     
@@ -262,6 +320,25 @@ extension ProfileViewController : ContentCellDelegate {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func logOutUser() {
+        User.logOutCurrentUser { (error) in
+            
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            
+            let loginVC  = LoginViewController()
+
+            DispatchQueue.main.sync {
+                loginVC.modalPresentationStyle = .fullScreen
+                
+                self.present(loginVC, animated: true, completion: nil)
+            }
+            
+        }
     }
     
     //MARK: - Gallary
@@ -311,11 +388,9 @@ extension ProfileViewController : ContentCellDelegate {
             
             self.user.imageLinks = imageLinks
             self.saveUserData(user: self.user)
-            
-            
+
         }
-        
-        
+
     }
     
     
