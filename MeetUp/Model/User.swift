@@ -126,6 +126,10 @@ class User : Equatable {
             dateOfBirth = _dictionary[kDATEOFBIRTH] as? Date ?? Date()
         }
         
+        let placeHolder = isMale ? "mPlaceholder" : "fPlaceholder"
+        avatar =  UIImage(contentsOfFile: fileInDocumentDirectry(filename: self.uid)) ?? UIImage(named: placeHolder)
+        
+        
     }
     
     
@@ -143,6 +147,17 @@ class User : Equatable {
             }
         }
          return nil
+    }
+    
+    func getUserAvatarFromFiresore(comletion :  @escaping(_ didSet : Bool) -> Void) {
+        FileStorage.downloadImage(imageUrl: self.avatarLink) { (avatarImage) in
+            
+            let placeHolder = self.isMale ? "mPlaceholder" : "fPlaceholder"
+            
+            self.avatar = avatarImage ?? UIImage(named: placeHolder)
+            
+            comletion(true)
+        }
     }
     
     //MARK: - Functions

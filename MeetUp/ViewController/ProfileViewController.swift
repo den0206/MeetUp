@@ -8,6 +8,7 @@
 
 import UIKit
 import Gallery
+import ProgressHUD
 
 
 private let contentIdentifer = "ContentCell"
@@ -79,6 +80,14 @@ class ProfileViewController : UITableViewController {
         
         if avatarImage !=  nil {
             /// upload new avatar
+            uploadAvatar(avatarImage!) { (avatarLink) in
+                
+                self.user.avatarLink = avatarLink ?? ""
+                self.user.avatar = self.avatarImage
+                
+                self.saveUserData(user: self.user)
+                self.tableView.reloadData()
+            }
             
         } else {
             /// no upload avatar
@@ -88,7 +97,7 @@ class ProfileViewController : UITableViewController {
         editingMode = false
         showSaveButton()
 
-        tableView.reloadData()
+//        tableView.reloadData()
         
 
     }
@@ -129,13 +138,13 @@ extension ProfileViewController {
         
         switch indexPath.section {
         case 0:
-            contentCell = tableView.dequeueReusableCell(withIdentifier: contentIdentifer, for: indexPath) as! ContentCell
+            contentCell = tableView.dequeueReusableCell(withIdentifier: contentIdentifer, for: indexPath) as? ContentCell
             contentCell.delegate = self
             contentCell.user = user
             return contentCell
         case 1 :
             
-            aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as! AboutCell
+            aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as? AboutCell
             aboutCell.textView.isUserInteractionEnabled = editingMode
             aboutCell.user = user
             return aboutCell
@@ -273,6 +282,42 @@ extension ProfileViewController : ContentCellDelegate {
         
     }
     
+    //MARK: - File Stroge
+    private func uploadAvatar(_ image : UIImage, completion :  @escaping(_ avatarLink : String?) -> Void) {
+        
+        ProgressHUD.show()
+        
+        let fileDirectory = "Avatars/_" + User.currentId() + ".jpeg"
+        
+        FileStorage.uploadImage(image, directry: fileDirectory) { (avatarLink) in
+            ProgressHUD.dismiss()
+            /// sve file locally
+            FileStorage.saveImageLocally(imageData: image.jpegData(compressionQuality: 0.1)! as NSData, fileName: User.currentId())
+            completion(avatarLink)
+        }
+        
+        
+    }
+    
+    private func uploadImage(images : [UIImage?]) {
+        
+        ProgressHUD.show()
+        
+        /// uploadIMages
+        
+        FileStorage.uploadMultipleImages(images) { (imageLinks) in
+            
+            ProgressHUD.dismiss()
+            
+            self.user.imageLinks = imageLinks
+            self.saveUserData(user: self.user)
+            
+            
+        }
+        
+        
+    }
+    
     
     
 }
@@ -295,6 +340,10 @@ extension ProfileViewController : GalleryControllerDelegate {
             } else {
                 
                 /// only 10
+                Image.resolve(images: images) { (resolvedImages) in
+                    ///upload
+                    self.uploadImage(images: resolvedImages)
+                }
                 
             }
         }

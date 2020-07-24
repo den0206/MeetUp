@@ -26,6 +26,12 @@ class FIrebaseListner {
                   
                   let user = User(_dictionary: snapshot.data()! as NSDictionary)
                   user.saveUserLocaly()
+                
+                user.getUserAvatarFromFiresore { (didSet) in
+                    
+                }
+                
+                
               }
           }
       }

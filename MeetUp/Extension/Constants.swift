@@ -8,6 +8,7 @@
 
 import Foundation
 
+public let kFILEREREFENCE = "gs://market-c8b09.appspot.com"
 //MARK: - User
 
 

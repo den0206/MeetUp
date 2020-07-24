@@ -39,7 +39,7 @@ class ContentCell : UITableViewCell {
     let userImageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "avatar")
+//        iv.image = #imageLiteral(resourceName: "avatar")
         iv.setDimensions(height: 150, width: 150)
         iv.layer.cornerRadius = 150 / 2
         iv.clipsToBounds = true
@@ -126,9 +126,15 @@ class ContentCell : UITableViewCell {
     
     private func configureUser() {
         guard let user = user else {return}
+        
+        FileStorage.downloadImage(imageUrl: user.avatarLink) { (image) in
+            return
+        }
+        
+          userImageView.image = user.avatar
         /// culluculate Age from BIrth Date
         let age = abs(user.dateOfBirth.interVal(ofComponent: .year, fromDate: Date()))
-        
+     
         userNameLabel.text = user.userName + ", \(age)"
         ageLabel.text = user.country + ", " + user.city
         
