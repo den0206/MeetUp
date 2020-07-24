@@ -128,6 +128,23 @@ class User : Equatable {
         
     }
     
+    
+    //MARK: - Helper
+    
+    class func currentId() -> String {
+        return Auth.auth().currentUser!.uid
+    }
+    
+    class func currentUser() -> User? {
+        
+        if Auth.auth().currentUser != nil {
+            if let dictionary = UserDefaults.standard.object(forKey: kCURRENTUSER) {
+                return User(_dictionary: dictionary as! NSDictionary)
+            }
+        }
+         return nil
+    }
+    
     //MARK: - Functions
     
     class func loginUser(withEmal : String, password : String, completion :  @escaping(_ error: Error?) -> Void) {

@@ -39,7 +39,21 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    func interVal(ofComponent : Calendar.Component, fromDate : Date) -> Int {
+        
+        let currentCarrender = Calendar.current
+        
+        guard let start = currentCarrender.ordinality(of: ofComponent, in: .era, for: fromDate) else { return 0}
+        guard let end = currentCarrender.ordinality(of: ofComponent, in: .era, for: self) else { return 0}
+        
+        return end - start
+        
+    }
+    
+    
 }
+
 
 
 extension UIView {

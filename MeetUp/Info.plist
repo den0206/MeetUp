@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME)　は　フォトライブラリーを使います</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>$(PRODUCT_NAME)　は　メディアライブラリーを使います</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME)　は　カメラを使います</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

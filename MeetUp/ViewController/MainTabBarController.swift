@@ -13,13 +13,16 @@ class MainTabBarController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTabController()
+        if User.currentUser() != nil {
+            configureTabController()
+        }
+        
         
     }
     
     private func configureTabController() {
         
-        let profileVC = createnavConroller(image: nil, title: "Profile", rootViewController: ProfileViewController())
+        let profileVC = createnavConroller(image: nil, title: "Profile", rootViewController: ProfileViewController(user: User.currentUser()!))
         
         viewControllers = [profileVC]
         UITabBar.appearance().tintColor = .black

@@ -10,6 +10,13 @@ import UIKit
 
 class AboutCell : UITableViewCell {
     
+    var user : User? {
+        didSet {
+            configureUser()
+        }
+    }
+    
+    
     //MARK: - Parts
 
     private let titleLabel : UILabel = {
@@ -43,4 +50,10 @@ class AboutCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - UI
+    
+    private func configureUser() {
+        guard let user = user else {return}
+        textView.text = user.about
+    }
 }

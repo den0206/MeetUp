@@ -19,6 +19,12 @@ class ContentCell : UITableViewCell {
     
     weak var delegate : ContentCellDelegate?
     
+    var user : User? {
+        didSet {
+            configureUser()
+        }
+    }
+    
     //MARK: - Parts
     
     private let backView : UIView = {
@@ -30,7 +36,7 @@ class ContentCell : UITableViewCell {
         return view
     }()
     
-    private let userImageView : UIImageView = {
+    let userImageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "avatar")
@@ -40,14 +46,14 @@ class ContentCell : UITableViewCell {
         return iv
     }()
     
-    private let userNameLabel : UILabel = {
+    let userNameLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "Name"
         return label
     }()
     
-    private let ageLabel : UILabel = {
+    let ageLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 12)
@@ -114,6 +120,19 @@ class ContentCell : UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UI
+    
+    private func configureUser() {
+        guard let user = user else {return}
+        /// culluculate Age from BIrth Date
+        let age = abs(user.dateOfBirth.interVal(ofComponent: .year, fromDate: Date()))
+        
+        userNameLabel.text = user.userName + ", \(age)"
+        ageLabel.text = user.country + ", " + user.city
+        
+        
     }
     
     //MARK: - Actions

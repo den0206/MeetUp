@@ -7,13 +7,35 @@
 //
 
 import UIKit
+import Gallery
+
 
 private let contentIdentifer = "ContentCell"
 private let aboutIdentifer = "AboutCell"
 private let profileIdentifer = "ProfileCell"
 class ProfileViewController : UITableViewController {
     
+    //MARK: - propertt
+    
+    let user : User
+    var contentCell : ContentCell!
+    var aboutCell : AboutCell!
+    
+    var uploadingAvatar = true
     var editingMode = false
+    
+    var avatarImage : UIImage?
+    var gallry : GalleryController!
+    
+    init(user : User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +44,11 @@ class ProfileViewController : UITableViewController {
         overrideUserInterfaceStyle = .light
         
         configureTV()
+        print(user.userName)
+
     }
+    
+  
     
     //MARK: - UI
     private func configureTV() {
@@ -40,12 +66,39 @@ class ProfileViewController : UITableViewController {
         navigationItem.rightBarButtonItem = editingMode ? saveButton : nil
     }
     
-    //MARK: - Actions
-    @objc func handleSave() {
-        print("Save")
-    }
+    //MARK: - API
+    
+ 
 
     
+    //MARK: - Actions
+    @objc func handleSave() {
+        guard user.uid == User.currentId() else {return}
+        
+        // TODO: - chage user parametaer
+        
+        if avatarImage !=  nil {
+            /// upload new avatar
+            
+        } else {
+            /// no upload avatar
+            saveUserData(user: user)
+        }
+        
+        editingMode = false
+        showSaveButton()
+
+        tableView.reloadData()
+        
+
+    }
+
+    private func saveUserData(user : User) {
+        /// userDictionaey
+        user.saveUserLocaly()
+        user.saveUserToFireStore()
+        
+    }
     
 }
 
@@ -76,15 +129,15 @@ extension ProfileViewController {
         
         switch indexPath.section {
         case 0:
-            let contentCell = tableView.dequeueReusableCell(withIdentifier: contentIdentifer, for: indexPath) as! ContentCell
+            contentCell = tableView.dequeueReusableCell(withIdentifier: contentIdentifer, for: indexPath) as! ContentCell
             contentCell.delegate = self
-            
+            contentCell.user = user
             return contentCell
         case 1 :
             
-            let aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as! AboutCell
+            aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as! AboutCell
             aboutCell.textView.isUserInteractionEnabled = editingMode
-            
+            aboutCell.user = user
             return aboutCell
             
         case 2,3 :
@@ -159,6 +212,7 @@ extension ProfileViewController : ContentCellDelegate {
         }
     }
     
+
     //MARK: - Alert Controller
     
     private func showSettingeOptions() {
@@ -187,11 +241,13 @@ extension ProfileViewController : ContentCellDelegate {
         let alertController = UIAlertController(title: "Upload Image", message: "You can Change picture", preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Change Avatar", style: .default, handler: { (alert) in
-            print("Avater")
+            self.uploadingAvatar = true
+            self.showGallry(forAvatar: true)
         }))
         
         alertController.addAction(UIAlertAction(title: "Upload Pictures", style: .default, handler: { (alert) in
-            print("Picture")
+            self.showGallry(forAvatar: false)
+
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -199,7 +255,65 @@ extension ProfileViewController : ContentCellDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
+    //MARK: - Gallary
     
+    private func showGallry(forAvatar : Bool) {
+        
+        uploadingAvatar = forAvatar
+        
+        self.gallry = GalleryController()
+        self.gallry.delegate = self
+        Config.tabsToShow = [.imageTab, .cameraTab]
+        Config.Camera.imageLimit = forAvatar ? 1 : 10
+        Config.initialTab = .imageTab
+        
+        self.present(gallry, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
+}
+extension ProfileViewController : GalleryControllerDelegate {
+    
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        
+        if images.count > 0 {
+            
+            if uploadingAvatar {
+                /// only one
+                images.first!.resolve { (icon) in
+                    
+                    guard icon != nil else { return }
+                    self.editingMode = true
+                    self.showSaveButton()
+                    self.contentCell.userImageView.image = icon
+                    self.avatarImage = icon
+                }
+            } else {
+                
+                /// only 10
+                
+            }
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        controller.dismiss(animated: true, completion: nil)
+
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
     
     
 }
