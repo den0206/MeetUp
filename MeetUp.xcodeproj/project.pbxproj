@@ -13,6 +13,12 @@
 		3A1EF64624C88D7B0018A5D5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1EF64524C88D7B0018A5D5 /* SignUpViewController.swift */; };
 		3A2DCFEB24C93382002B1C6C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DCFEA24C93382002B1C6C /* User.swift */; };
 		3A2DCFED24C93D54002B1C6C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DCFEC24C93D54002B1C6C /* Constants.swift */; };
+		3A411C1724CBEA060041F402 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A411C1624CBEA060041F402 /* CardViewController.swift */; };
+		3A411C1924CBEBD50041F402 /* UserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A411C1824CBEBD50041F402 /* UserCard.swift */; };
+		3A411C1B24CBECA00041F402 /* UserCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A411C1A24CBECA00041F402 /* UserCardModel.swift */; };
+		3A411C1E24CBED850041F402 /* UserCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A411C1D24CBED850041F402 /* UserCardOverlay.swift */; };
+		3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46EC8324CC058B00D92BC9 /* UserCardContentView.swift */; };
+		3A46EC8624CC082700D92BC9 /* UserCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46EC8524CC082700D92BC9 /* UserCardFooterView.swift */; };
 		3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */; };
 		3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */; };
 		3A63CB3424C871FA005E8A6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3324C871FA005E8A6D /* Assets.xcassets */; };
@@ -37,6 +43,12 @@
 		3A1EF64524C88D7B0018A5D5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3A2DCFEA24C93382002B1C6C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A2DCFEC24C93D54002B1C6C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3A411C1624CBEA060041F402 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		3A411C1824CBEBD50041F402 /* UserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCard.swift; sourceTree = "<group>"; };
+		3A411C1A24CBECA00041F402 /* UserCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardModel.swift; sourceTree = "<group>"; };
+		3A411C1D24CBED850041F402 /* UserCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardOverlay.swift; sourceTree = "<group>"; };
+		3A46EC8324CC058B00D92BC9 /* UserCardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardContentView.swift; sourceTree = "<group>"; };
+		3A46EC8524CC082700D92BC9 /* UserCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardFooterView.swift; sourceTree = "<group>"; };
 		3A63CB2724C871F8005E8A6D /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,8 +109,21 @@
 			isa = PBXGroup;
 			children = (
 				3A2DCFEA24C93382002B1C6C /* User.swift */,
+				3A411C1C24CBED5A0041F402 /* CardViews */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3A411C1C24CBED5A0041F402 /* CardViews */ = {
+			isa = PBXGroup;
+			children = (
+				3A411C1824CBEBD50041F402 /* UserCard.swift */,
+				3A411C1A24CBECA00041F402 /* UserCardModel.swift */,
+				3A411C1D24CBED850041F402 /* UserCardOverlay.swift */,
+				3A46EC8324CC058B00D92BC9 /* UserCardContentView.swift */,
+				3A46EC8524CC082700D92BC9 /* UserCardFooterView.swift */,
+			);
+			path = CardViews;
 			sourceTree = "<group>";
 		};
 		3A63CB1E24C871F8005E8A6D = {
@@ -143,6 +168,7 @@
 				3A1EF64424C88D610018A5D5 /* Auth */,
 				3A0AB43F24C96081001CF96E /* MainTabBarController.swift */,
 				3AD0A34924C98E5A009FB7D0 /* ProfileViewController.swift */,
+				3A411C1624CBEA060041F402 /* CardViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -301,17 +327,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A411C1B24CBECA00041F402 /* UserCardModel.swift in Sources */,
 				3A63CB4224C878F7005E8A6D /* LoginViewController.swift in Sources */,
 				3AD0A34E24C993CB009FB7D0 /* ContentCell.swift in Sources */,
+				3A46EC8624CC082700D92BC9 /* UserCardFooterView.swift in Sources */,
 				3AD0A35024C99B6F009FB7D0 /* AboutCell.swift in Sources */,
 				3A63CB4924C88690005E8A6D /* GradientButton.swift in Sources */,
+				3A411C1924CBEBD50041F402 /* UserCard.swift in Sources */,
 				3A0AB44024C96081001CF96E /* MainTabBarController.swift in Sources */,
 				3A1EF64624C88D7B0018A5D5 /* SignUpViewController.swift in Sources */,
 				3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */,
 				3A2DCFEB24C93382002B1C6C /* User.swift in Sources */,
+				3A411C1724CBEA060041F402 /* CardViewController.swift in Sources */,
+				3A411C1E24CBED850041F402 /* UserCardOverlay.swift in Sources */,
 				3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */,
 				3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */,
 				3A0AB43C24C95289001CF96E /* Refernce.swift in Sources */,
+				3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */,
 				3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */,
 				3AD0A34A24C98E5A009FB7D0 /* ProfileViewController.swift in Sources */,
 				3A0AB43E24C95391001CF96E /* Listner.swift in Sources */,

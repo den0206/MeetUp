@@ -21,10 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         
+//        self.window = UIWindow(windowScene: scene)
+//        self.window?.rootViewController = CalenderVIewController()
+        //        self.window?.makeKeyAndVisible()
+        //
         autoLogin(scene)
-    
+        
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

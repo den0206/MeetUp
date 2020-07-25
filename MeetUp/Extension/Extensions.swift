@@ -22,6 +22,10 @@ extension UIColor {
     func tabBarSelectedColor() -> UIColor{
         return UIColor(red: 255/255, green: 216/255, blue: 223/255, alpha: 1)
     }
+    
+    static var sampleRed = UIColor(red: 252 / 255, green: 70 / 255, blue: 93 / 255, alpha: 1)
+    static var sampleGreen = UIColor(red: 49 / 255, green: 193 / 255, blue: 109 / 255, alpha: 1)
+    static var sampleBlue = UIColor(red: 52 / 255, green: 154 / 255, blue: 254 / 255, alpha: 1)
 }
 
 extension Date {
@@ -76,10 +80,20 @@ extension Date {
 
 extension UIView {
     
+    func applyShadow(radius: CGFloat,
+                     opacity: Float,
+                     offset: CGSize,
+                     color: UIColor = .black) {
+        layer.shadowRadius = radius
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offset
+        layer.shadowColor = color.cgColor
+    }
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
-                   left: NSLayoutXAxisAnchor? = nil,
-                   bottom: NSLayoutYAxisAnchor? = nil,
-                   right: NSLayoutXAxisAnchor? = nil,
+                left: NSLayoutXAxisAnchor? = nil,
+                bottom: NSLayoutYAxisAnchor? = nil,
+                right: NSLayoutXAxisAnchor? = nil,
                    paddingTop: CGFloat = 0,
                    paddingLeft: CGFloat = 0,
                    paddingBottom: CGFloat = 0,
@@ -424,4 +438,34 @@ extension UIViewController {
     }
 }
 
+extension NSAttributedString.Key {
+
+  static var overlayAttributes: [NSAttributedString.Key: Any] = [
+    // swiftlint:disable:next force_unwrapping
+    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 42)!,
+    NSAttributedString.Key.kern: 5.0
+  ]
+    
+    static var shadowAttribute: NSShadow = {
+      let shadow = NSShadow()
+      shadow.shadowOffset = CGSize(width: 0, height: 1)
+      shadow.shadowBlurRadius = 2
+      shadow.shadowColor = UIColor.black.withAlphaComponent(0.3)
+      return shadow
+    }()
+
+    static var titleAttributes: [NSAttributedString.Key: Any] = [
+      // swiftlint:disable:next force_unwrapping
+      NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 24)!,
+      NSAttributedString.Key.foregroundColor: UIColor.white,
+      NSAttributedString.Key.shadow: NSAttributedString.Key.shadowAttribute
+    ]
+
+    static var subtitleAttributes: [NSAttributedString.Key: Any] = [
+      // swiftlint:disable:next force_unwrapping
+      NSAttributedString.Key.font: UIFont(name: "Arial", size: 17)!,
+      NSAttributedString.Key.foregroundColor: UIColor.white,
+      NSAttributedString.Key.shadow: NSAttributedString.Key.shadowAttribute
+    ]
+}
 

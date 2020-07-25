@@ -22,9 +22,13 @@ class MainTabBarController : UITabBarController {
     
     private func configureTabController() {
         
+        let cardVC = CardViewController()
+        let nav1 = createnavConroller(image: nil, title: "Cards", rootViewController: cardVC)
+        
+        
         let profileVC = createnavConroller(image: nil, title: "Profile", rootViewController: ProfileViewController(user: User.currentUser()!))
         
-        viewControllers = [profileVC]
+        viewControllers = [nav1,profileVC]
         UITabBar.appearance().tintColor = .black
         tabBar.unselectedItemTintColor = .lightGray
         
