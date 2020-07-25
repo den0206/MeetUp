@@ -35,6 +35,60 @@ class FIrebaseListner {
               }
           }
       }
+    /// with pagination
+    
+    func downloadUsersFromFirestore(isInitial : Bool, limit : Int, lastDocument : DocumentSnapshot?, completion :  @escaping(_ users : [User],_ snapshot : DocumentSnapshot?) -> Void) {
+        
+        var query : Query!
+        var users = [User]()
+        
+        if isInitial {
+            query = FirebaseReference(reference: .User).order(by: kREGISTERDDATE, descending: false).limit(to: limit)
+        } else {
+            
+            guard let lastDocument = lastDocument else {return}
+            query = FirebaseReference(reference: .User).order(by: kREGISTERDDATE, descending: false).limit(to: limit).start(afterDocument: lastDocument)
+            
+        }
+        
+        
+        guard query != nil else { completion(users, nil); return}
+        
+        query.getDocuments { (snapshot, erro) in
+            guard let snapshot = snapshot else {return}
+            
+            if !snapshot.isEmpty {
+                
+                for doc in snapshot.documents {
+                    let userDic = doc.data() as NSDictionary
+                    let uid = userDic[kUID] as! String
+                    
+                    if !((User.currentUser()?.likedIdArray?.contains(uid)) ?? false) && User.currentId() != uid {
+                        users.append(User(_dictionary: userDic))
+                        
+                    }
+                }
+                
+                completion(users, snapshot.documents.last)
+                
+            } else {
+                completion(users, nil)
+            }
+        }
+        
+    }
+    
+    
+    
+    
+
+}
+
+
+
+
+
+    
 //    func downloadCurrnetuserFromFirestore(uid : String) {
 //
 //        FirebaseReference(reference: .User).document(uid).getDocument { (snapshot, error) in
@@ -55,5 +109,3 @@ class FIrebaseListner {
 //            }
 //        }
 //    }
-}
-

@@ -308,3 +308,31 @@ class User : Equatable {
     
     
 }
+
+
+func createDummyUsers() {
+    let names : [String] = ["1","2","3","4","5", "6"]
+    var userIndex = 1
+    var imageIndex = 1
+    var isMale = true
+    
+    for i in 0..<5{
+        let id = UUID().uuidString
+        let fileDirectory = "Avatars/_" + id + ".jpeg"
+        
+        FileStorage.uploadImage(UIImage(named: "user\(imageIndex)")!, directry: fileDirectory) { (avatarLink) in
+            
+            let user = User(_uid: id, _email: "user\(imageIndex)@gmail.com", _username: names[userIndex], _city: "Tokyo", _dateOfBirth: Date(), _isMale: isMale,_avatarLink: avatarLink ?? "")
+           
+            isMale.toggle()
+            userIndex += 1
+            user.saveUserToFireStore()
+        }
+        
+        imageIndex += 1
+        if imageIndex == 16 {
+            imageIndex = 1
+        }
+
+    }
+}

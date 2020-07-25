@@ -10,10 +10,16 @@ import UIKit
 
 struct UserCardModel {
     
-    let id : String
-    let name : String
-    let age : Int
-    let occupation : String?
-    let image : UIImage?
+    let user : User
+    
+    var id : String {return user.uid}
+    var name : String {return user.userName}
+    var age : Int {return abs(user.dateOfBirth.interVal(ofComponent: .year, fromDate: Date()))}
+    var occupation : String? {return user.profession}
+    var image : UIImage? {return user.avatar}
+    
+    init(user : User) {
+        self.user = user
+    }
     
 }
