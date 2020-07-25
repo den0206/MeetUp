@@ -19,7 +19,7 @@ class AboutCell : UITableViewCell {
     
     //MARK: - Parts
 
-    private let titleLabel : UILabel = {
+    let titleLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         label.text = "About Me"

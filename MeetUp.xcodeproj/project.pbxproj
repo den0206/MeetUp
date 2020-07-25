@@ -27,7 +27,10 @@
 		3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4424C8795E005E8A6D /* Extensions.swift */; };
 		3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4624C879BA005E8A6D /* Reachbility.swift */; };
 		3A63CB4924C88690005E8A6D /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB4824C88690005E8A6D /* GradientButton.swift */; };
-		3AD0A34A24C98E5A009FB7D0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34924C98E5A009FB7D0 /* ProfileViewController.swift */; };
+		3A911BC324CC5C96002AD0BD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A911BC224CC5C96002AD0BD /* ProfileViewController.swift */; };
+		3A911BC524CC6037002AD0BD /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A911BC424CC6037002AD0BD /* ProfileHeaderCell.swift */; };
+		3A911BC924CC6F2A002AD0BD /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A911BC824CC6F2A002AD0BD /* ProfileImageCell.swift */; };
+		3AD0A34A24C98E5A009FB7D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34924C98E5A009FB7D0 /* SettingsViewController.swift */; };
 		3AD0A34E24C993CB009FB7D0 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */; };
 		3AD0A35024C99B6F009FB7D0 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */; };
 		3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */; };
@@ -58,7 +61,10 @@
 		3A63CB4424C8795E005E8A6D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3A63CB4624C879BA005E8A6D /* Reachbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachbility.swift; sourceTree = "<group>"; };
 		3A63CB4824C88690005E8A6D /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
-		3AD0A34924C98E5A009FB7D0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3A911BC224CC5C96002AD0BD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3A911BC424CC6037002AD0BD /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		3A911BC824CC6F2A002AD0BD /* ProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
+		3AD0A34924C98E5A009FB7D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoroge.swift; sourceTree = "<group>"; };
@@ -165,7 +171,8 @@
 				3A1EF64424C88D610018A5D5 /* Auth */,
 				3A0AB43F24C96081001CF96E /* MainTabBarController.swift */,
 				3A411C1624CBEA060041F402 /* CardViewController.swift */,
-				3AD0A34924C98E5A009FB7D0 /* ProfileViewController.swift */,
+				3AD0A34924C98E5A009FB7D0 /* SettingsViewController.swift */,
+				3A911BC224CC5C96002AD0BD /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -187,18 +194,20 @@
 		3AD0A34B24C993A1009FB7D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3AD0A34C24C993AB009FB7D0 /* Profile */,
+				3AD0A34C24C993AB009FB7D0 /* Settings */,
+				3A911BC424CC6037002AD0BD /* ProfileHeaderCell.swift */,
+				3A911BC824CC6F2A002AD0BD /* ProfileImageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		3AD0A34C24C993AB009FB7D0 /* Profile */ = {
+		3AD0A34C24C993AB009FB7D0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */,
 				3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */,
 			);
-			path = Profile;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C0FD9BFEE877ADC79FEA75B8 /* Frameworks */ = {
@@ -334,14 +343,17 @@
 				3A1EF64624C88D7B0018A5D5 /* SignUpViewController.swift in Sources */,
 				3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */,
 				3A2DCFEB24C93382002B1C6C /* User.swift in Sources */,
+				3A911BC924CC6F2A002AD0BD /* ProfileImageCell.swift in Sources */,
 				3A411C1724CBEA060041F402 /* CardViewController.swift in Sources */,
+				3A911BC524CC6037002AD0BD /* ProfileHeaderCell.swift in Sources */,
 				3A411C1E24CBED850041F402 /* UserCardOverlay.swift in Sources */,
 				3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */,
 				3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */,
+				3A911BC324CC5C96002AD0BD /* ProfileViewController.swift in Sources */,
 				3A0AB43C24C95289001CF96E /* Refernce.swift in Sources */,
 				3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */,
 				3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */,
-				3AD0A34A24C98E5A009FB7D0 /* ProfileViewController.swift in Sources */,
+				3AD0A34A24C98E5A009FB7D0 /* SettingsViewController.swift in Sources */,
 				3A0AB43E24C95391001CF96E /* Listner.swift in Sources */,
 				3A2DCFED24C93D54002B1C6C /* Constants.swift in Sources */,
 				3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */,

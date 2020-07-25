@@ -253,7 +253,7 @@ class User : Equatable {
 //        }
 //    }
     
-    //MARK: - Edit uer profile
+    //MARK: - Edit uer
     
     func updateUserEmail(email : String, completion :  @escaping(_ error : Error?) -> Void) {
         
