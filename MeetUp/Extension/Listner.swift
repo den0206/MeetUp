@@ -48,7 +48,6 @@ class FIrebaseListner {
             
             guard let lastDocument = lastDocument else {return}
             query = FirebaseReference(reference: .User).order(by: kREGISTERDDATE, descending: false).limit(to: limit).start(afterDocument: lastDocument)
-            
         }
         
         

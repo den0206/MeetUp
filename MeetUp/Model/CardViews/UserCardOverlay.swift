@@ -19,7 +19,7 @@ class UserCardOverlay : UIView{
         case .left:
             createLeftOverLay()
         case .right :
-            createLeftOverLay()
+            createRightOverLay()
         default:
             break
             
@@ -38,7 +38,7 @@ class UserCardOverlay : UIView{
     private func createRightOverLay(){
         let rightTextView = SampleOverlayView(withTitle: "like", color: .sampleGreen, rotation: -CGFloat.pi/10)
         addSubview(rightTextView)
-        rightTextView.anchor(top : topAnchor,right: leftAnchor,paddingTop: 26,paddingLeft: 14)
+        rightTextView.anchor(top : topAnchor,left: leftAnchor,paddingTop: 26,paddingLeft: 14)
         
     }
 }

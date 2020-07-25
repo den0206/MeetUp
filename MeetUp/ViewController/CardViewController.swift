@@ -33,11 +33,7 @@ class CardViewController : UIViewController  {
         /// create Dummy Users(onde time)
 //        createDummyUsers()
         
-//        let user = User.currentUser()!
-//        let cardModel = UserCardModel(user: user)
-//
-//        initialCardModel.append(cardModel)
-//
+
         layoutCardStackView()
         downloadIniaialUsers()
     }
@@ -45,6 +41,7 @@ class CardViewController : UIViewController  {
     //MARK: - Layout Carsds
     
     private func layoutCardStackView() {
+        view.backgroundColor = .white
         cardStack.delegate = self
         cardStack.dataSource = self
         
@@ -62,10 +59,9 @@ class CardViewController : UIViewController  {
             guard users.count > 0 else {ProgressHUD.showError("Userが見つかりません"); return}
             
             self.lastDucumentSnapshot = lastDocument
-            self.isInitilaLoad = true
+            self.isInitilaLoad = false
             self.userObject = users
             self.initialCardModel = []
-            
             
             users.forEach { (user) in
                 user.getUserAvatarFromFiresore { (didset) in
@@ -77,13 +73,38 @@ class CardViewController : UIViewController  {
                     if users.count == self.numberOfCardsAdded {
                         /// first reload
                         ProgressHUD.dismiss()
-                        self.cardStack.reloadData()
+                        
+                        DispatchQueue.main.async {
+                            self.layoutCardStackView()
+                        }
                     }
                     
                 }
             }
+            
+            self.downloadMoreUsers()
+            
         }
         
+    }
+    
+    private func downloadMoreUsers() {
+//        print(self.lastDucumentSnapshot)
+        
+        FIrebaseListner.saherd.downloadUsersFromFirestore(isInitial: isInitilaLoad, limit: 10000, lastDocument: lastDucumentSnapshot) { (users, lastDocumrnt) in
+            self.lastDucumentSnapshot = lastDocumrnt
+            self.secoundCardModel = []
+            
+            self.userObject += users
+            
+            users.forEach { (user) in
+                user.getUserAvatarFromFiresore { (didSet) in
+                    let cardModel = UserCardModel(user: user)
+                    self.secoundCardModel.append(cardModel)
+        
+                }
+            }
+        }
     }
 }
 
@@ -99,12 +120,23 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
             card.setOverlay(UserCardOverlay(direction: direction), forDirection: direction)
             
         }
-        card.configure(withModel: initialCardModel[index])
+        
+        if showReserve {
+            card.configure(withModel: secoundCardModel[index])
+        } else {
+            card.configure(withModel: initialCardModel[index])
+
+        }
         
         return card
     }
     
     func numberOfCards(in cardStack: SwipeCardStack) -> Int {
+        
+        if showReserve {
+            return secoundCardModel.count
+        }
+        
         return initialCardModel.count
     }
     
@@ -118,7 +150,14 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
         return
     }
     func didSwipeAllCards(_ cardStack: SwipeCardStack) {
-        print("finsh swpie")
+        initialCardModel = []
+        
+        if showReserve {
+            secoundCardModel = []
+        }
+        
+        showReserve = true
+        layoutCardStackView()
     }
     
     
