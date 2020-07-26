@@ -147,7 +147,11 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
-        return
+        
+        let user = userObject[index]
+        
+        let profileVC = ProfileViewController(user: user)
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     func didSwipeAllCards(_ cardStack: SwipeCardStack) {
         initialCardModel = []

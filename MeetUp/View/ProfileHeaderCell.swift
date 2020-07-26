@@ -8,8 +8,9 @@
 
 import UIKit
 
-private let profileImageIdentifer = "CVCell"
 class ProfileHeaderCell : UITableViewCell {
+    
+    var user : User?
     
     //MARK: - Parts
     private let backView : UIView = {
@@ -80,7 +81,7 @@ class ProfileHeaderCell : UITableViewCell {
 
         collectionView.anchor(top : backView.topAnchor ,left : backView.leftAnchor, right: backView.rightAnchor,paddingTop: 8,paddingLeft: 4,paddingRight: 4,width: 359, height: 459)
         
-        collectionView.register(ProfileImageCell.self, forCellWithReuseIdentifier: profileImageIdentifer)
+        collectionView.register(ProfileImageCell.self, forCellWithReuseIdentifier: ProfileImageCell.identifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -113,14 +114,19 @@ class ProfileHeaderCell : UITableViewCell {
 
 extension ProfileHeaderCell : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        
+        
+//        if ((user?.imageLinks?.count)!) > 0 {
+//            return 1 + (user?.imageLinks?.count)!
+//        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileImageIdentifer, for: indexPath) as! ProfileImageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImageCell.identifier, for: indexPath) as! ProfileImageCell
         
-        cell.backgroundColor = .lightGray
+        cell.user = user
         return cell
     }
     

@@ -10,6 +10,14 @@ import UIKit
 
 class ProfileImageCell : UICollectionViewCell {
     
+    static let identifier = "Cell"
+    var user : User? {
+        didSet {
+            configureUI()
+        }
+    }
+
+
     //MARK: - Parts
     private let profileImageView : UIImageView = {
         let iv = UIImageView()
@@ -25,6 +33,7 @@ class ProfileImageCell : UICollectionViewCell {
         return label
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,5 +48,12 @@ class ProfileImageCell : UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UI
+    private func configureUI() {
+        guard let user = user else {return}
+        
+        profileImageView.image = user.avatar
     }
 }

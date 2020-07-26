@@ -15,6 +15,7 @@ private let cellIdentifer = "Cell"
 class ProfileViewController : UITableViewController {
     
     private let user : User
+    var headerCell : ProfileHeaderCell!
     var aboutCell : AboutCell!
     
     init(user : User) {
@@ -71,7 +72,10 @@ extension ProfileViewController {
         switch indexPath.section {
             
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifer, for: indexPath) as! ProfileHeaderCell
+            headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifer, for: indexPath) as? ProfileHeaderCell
+            headerCell.user = user
+            
+            return headerCell
         case 1 :
             aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as? AboutCell
             
@@ -124,6 +128,12 @@ extension ProfileViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return String(section)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }
     
 }
