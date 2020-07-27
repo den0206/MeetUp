@@ -8,9 +8,23 @@
 
 import UIKit
 
+protocol ProfileHeaderCellDelegate : class {
+    func tappedLikeButton(cell : ProfileHeaderCell)
+    func tappedDidLikeButton(cell : ProfileHeaderCell)
+}
+
 class ProfileHeaderCell : UITableViewCell {
     
-    var user : User?
+    weak var delegate : ProfileHeaderCellDelegate?
+    
+    var user : User? {
+        didSet {
+            updateLikeBUttonStatus()
+        }
+    }
+    
+    static let identifier = "ProfileHeaderCellIdentifer"
+
     
     //MARK: - Parts
     private let backView : UIView = {
@@ -46,28 +60,31 @@ class ProfileHeaderCell : UITableViewCell {
     private lazy var disLikeButton : UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "dislike"), for: .normal)
-        
+        button.addTarget(self, action: #selector(tappedDisLike), for: .touchUpInside)
+
         return button
     }()
     
     private lazy var likeButton : UIButton = {
           let button = UIButton(type: .system)
           button.setBackgroundImage(#imageLiteral(resourceName: "like"), for: .normal)
+        button.addTarget(self, action: #selector(tappedLike), for: .touchUpInside)
 
           return button
       }()
     
+ 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         backgroundColor = .lightGray
-        
+
         addSubview(backView)
         backView.fillSuperview()
-        
+
         configureCV()
         configureButtonStack()
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -106,8 +123,24 @@ class ProfileHeaderCell : UITableViewCell {
         stack.centerX(inView: self)
         stack.anchor(top : pageController.bottomAnchor,paddingTop: 20)
         
-       
         
+    }
+    
+    private func updateLikeBUttonStatus() {
+        
+        likeButton.isEnabled = !User.currentUser()!.likedIdArray!.contains(user!.uid)
+        
+    }
+    
+    //MARK: - actions
+    
+    @objc func tappedLike() {
+       
+        delegate?.tappedLikeButton(cell: self)
+    }
+    
+    @objc func tappedDisLike() {
+        delegate?.tappedDidLikeButton(cell: self)
     }
     
 }
@@ -135,15 +168,12 @@ extension ProfileHeaderCell : UICollectionViewDelegate, UICollectionViewDataSour
         let cellWidth = frame.width - 15
         let cellHeight = frame.height - 200
         
-        return CGSize(width: cellWidth, height: cellHeight)
+        return CGSize(width: frame.width, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-    
+
     
 }

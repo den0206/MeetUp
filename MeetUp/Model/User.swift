@@ -306,6 +306,25 @@ class User : Equatable {
         FirebaseReference(reference: .User).document(self.uid).setData(self.userDictionary as! [String : Any])
     }
     
+    //MARK: - Likes
+    
+    func updateCurrentUserInFireStore(withValue: [String : Any], completion :  @escaping(_ error : Error? ) -> Void) {
+        
+        guard let dictionary = UserDefaults.standard.object(forKey: kCURRENTUSER) else {return}
+        print(dictionary)
+        
+        let userObject = (dictionary as! NSDictionary).mutableCopy() as! NSMutableDictionary
+        userObject.setValuesForKeys(withValue)
+        
+        FirebaseReference(reference: .User).document(User.currentId()).updateData(withValue) { (error) in
+            
+            if error == nil {
+                /// no error
+                User(_dictionary: userObject).saveUserLocaly()
+            }
+        }
+        
+    }
     
 }
 

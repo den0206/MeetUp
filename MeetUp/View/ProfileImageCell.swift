@@ -33,6 +33,7 @@ class ProfileImageCell : UICollectionViewCell {
         return label
     }()
     
+    let gradientlayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,5 +56,22 @@ class ProfileImageCell : UICollectionViewCell {
         guard let user = user else {return}
         
         profileImageView.image = user.avatar
+        
+        setGradientlayer()
+    }
+    
+    func setGradientlayer() {
+        
+        gradientlayer.removeFromSuperlayer()
+        let colorTop = UIColor.clear.cgColor
+        let colorBottom = UIColor.black.cgColor
+        
+        gradientlayer.colors = [colorTop,colorBottom]
+        gradientlayer.locations = [0.0, 1.0]
+        gradientlayer.cornerRadius = 0.5
+        gradientlayer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
+        
+        gradientlayer.frame = self.frame
+        profileImageView.layer.insertSublayer(gradientlayer, at: 0)
     }
 }

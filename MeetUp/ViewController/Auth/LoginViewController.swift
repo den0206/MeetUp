@@ -188,6 +188,9 @@ class LoginViewController : UIViewController {
         let mainVC = MainTabBarController()
         mainVC.modalPresentationStyle = .fullScreen
         
-        self.present(mainVC, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(mainVC, animated: true, completion: nil)
+            
+        }
     }
 }

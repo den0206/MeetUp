@@ -77,7 +77,17 @@ class FIrebaseListner {
         
     }
     
+
+    //MARK: - Like
     
+    func checkIfUserLikedMe(userId : String,completion :  @escaping(_ didLike : Bool) -> Void) {
+        FirebaseReference(reference: .Like).whereField(kLIKEDUSEID, isEqualTo: User.currentId()).whereField(kUID, isEqualTo: userId).getDocuments { (snapshot, error) in
+            
+            guard let snapshot = snapshot else {return}
+            
+            completion(!snapshot.isEmpty)
+        }
+    }
     
     
 

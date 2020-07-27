@@ -74,7 +74,7 @@ extension ProfileViewController {
         case 0:
             headerCell = tableView.dequeueReusableCell(withIdentifier: headerCellIdentifer, for: indexPath) as? ProfileHeaderCell
             headerCell.user = user
-            
+            headerCell.delegate = self
             return headerCell
         case 1 :
             aboutCell = tableView.dequeueReusableCell(withIdentifier: aboutIdentifer, for: indexPath) as? AboutCell
@@ -136,4 +136,22 @@ extension ProfileViewController {
         return view
     }
     
+}
+
+extension ProfileViewController : ProfileHeaderCellDelegate {
+    func tappedDidLikeButton(cell: ProfileHeaderCell) {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func tappedLikeButton(cell: ProfileHeaderCell) {
+        
+        saveLike(userId: user.uid)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+ 
+ 
 }

@@ -36,3 +36,9 @@ public let kPUSHID = "pushId"
 
 
 public let kCURRENTUSER = "currentUser"
+
+//MARK: - Match
+public let kOBJECTId = "objectId"
+public let kDATE  = "date"
+public let kLIKEDUSEID = "likedUserId"
+public let kMEMBERS = "membersIds"

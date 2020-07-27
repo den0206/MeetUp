@@ -143,16 +143,33 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
     //MARK: - optional Delegate
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
-        return
+        let user = showReserve ? secoundCardModel[index].user : initialCardModel[index].user
+        
+        if direction == .right {
+            guard !didLikeUserWith(userId: user.uid) else {print("Already"); return}
+            
+            saveLike(userId: user.uid)
+            
+            FIrebaseListner.saherd.checkIfUserLikedMe(userId: user.uid) { (didLike) in
+                if didLike {
+                    print("Match")
+                }
+            }
+            
+        } else {
+            print(user.userName)
+        }
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         
-        let user = userObject[index]
-        
+        let user = showReserve ? secoundCardModel[index].user : initialCardModel[index].user
+
         let profileVC = ProfileViewController(user: user)
+//        profileVC.headerCell.delegate = self
         navigationController?.pushViewController(profileVC, animated: true)
     }
+    
     func didSwipeAllCards(_ cardStack: SwipeCardStack) {
         initialCardModel = []
         
@@ -162,6 +179,19 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
         
         showReserve = true
         layoutCardStackView()
+    }
+    
+    
+}
+
+extension  CardViewController : ProfileHeaderCellDelegate {
+    func tappedDidLikeButton(cell: ProfileHeaderCell) {
+        cardStack.swipe(.right, animated: true)
+    }
+    
+    func tappedLikeButton(cell: ProfileHeaderCell) {
+        cardStack.swipe(.left, animated: true)
+
     }
     
     

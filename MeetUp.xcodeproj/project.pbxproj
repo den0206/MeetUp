@@ -19,6 +19,7 @@
 		3A411C1E24CBED850041F402 /* UserCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A411C1D24CBED850041F402 /* UserCardOverlay.swift */; };
 		3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46EC8324CC058B00D92BC9 /* UserCardContentView.swift */; };
 		3A46EC8624CC082700D92BC9 /* UserCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A46EC8524CC082700D92BC9 /* UserCardFooterView.swift */; };
+		3A57E80B24CF03B5003FE64E /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A57E80A24CF03B5003FE64E /* GlobalFunctions.swift */; };
 		3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */; };
 		3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */; };
 		3A63CB3424C871FA005E8A6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A63CB3324C871FA005E8A6D /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		3AD0A34E24C993CB009FB7D0 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */; };
 		3AD0A35024C99B6F009FB7D0 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */; };
 		3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */; };
+		3AEBEB9E24CEFB8A0037A075 /* LikeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */; };
 		B9B92D22F2BD83B3BBA18265 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786467AC5395C5E23901881 /* Pods_MeetUp.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,7 @@
 		3A411C1D24CBED850041F402 /* UserCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardOverlay.swift; sourceTree = "<group>"; };
 		3A46EC8324CC058B00D92BC9 /* UserCardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardContentView.swift; sourceTree = "<group>"; };
 		3A46EC8524CC082700D92BC9 /* UserCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardFooterView.swift; sourceTree = "<group>"; };
+		3A57E80A24CF03B5003FE64E /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		3A63CB2724C871F8005E8A6D /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A63CB2A24C871F8005E8A6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A63CB2C24C871F8005E8A6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoroge.swift; sourceTree = "<group>"; };
+		3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeObject.swift; sourceTree = "<group>"; };
 		6786467AC5395C5E23901881 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				3A2DCFEA24C93382002B1C6C /* User.swift */,
+				3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */,
 				3A411C1C24CBED5A0041F402 /* CardViews */,
 			);
 			path = Model;
@@ -187,6 +192,7 @@
 				3A0AB43B24C95289001CF96E /* Refernce.swift */,
 				3A0AB43D24C95391001CF96E /* Listner.swift */,
 				3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */,
+				3A57E80A24CF03B5003FE64E /* GlobalFunctions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				3A411C1924CBEBD50041F402 /* UserCard.swift in Sources */,
 				3A0AB44024C96081001CF96E /* MainTabBarController.swift in Sources */,
 				3A1EF64624C88D7B0018A5D5 /* SignUpViewController.swift in Sources */,
+				3AEBEB9E24CEFB8A0037A075 /* LikeObject.swift in Sources */,
 				3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */,
 				3A2DCFEB24C93382002B1C6C /* User.swift in Sources */,
 				3A911BC924CC6F2A002AD0BD /* ProfileImageCell.swift in Sources */,
@@ -348,6 +355,7 @@
 				3A911BC524CC6037002AD0BD /* ProfileHeaderCell.swift in Sources */,
 				3A411C1E24CBED850041F402 /* UserCardOverlay.swift in Sources */,
 				3A63CB4724C879BA005E8A6D /* Reachbility.swift in Sources */,
+				3A57E80B24CF03B5003FE64E /* GlobalFunctions.swift in Sources */,
 				3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */,
 				3A911BC324CC5C96002AD0BD /* ProfileViewController.swift in Sources */,
 				3A0AB43C24C95289001CF96E /* Refernce.swift in Sources */,
