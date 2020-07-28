@@ -7,33 +7,67 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainTabBarController : UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if User.currentUser() != nil {
-            configureTabController()
-        }
+        checkUserIsLogin()
         
         
     }
     
-    private func configureTabController() {
-        
-        let cardVC = CardViewController()
-        let nav1 = createnavConroller(image: nil, title: "Cards", rootViewController: cardVC)
-        
-        
-        let settingVC = createnavConroller(image: nil, title: "Setting", rootViewController: SettingsViewController(user: User.currentUser()!))
-        
-        viewControllers = [nav1,settingVC]
-        UITabBar.appearance().tintColor = .black
-        tabBar.unselectedItemTintColor = .lightGray
-        
-        
+   private func configureTabController() {
+    
+    let cardVC = CardViewController()
+    let nav1 = createnavConroller(image: nil, title: "Cards", rootViewController: cardVC)
+    
+    let notificationVC = NotificationController()
+    let nav2 = createnavConroller(image: nil, title: "Likes", rootViewController: notificationVC)
+    
+    
+    
+    
+    let settingVC = createnavConroller(image: nil, title: "Setting", rootViewController: SettingsViewController(user: User.currentUser()!))
+    
+    viewControllers = [nav1,nav2, settingVC]
+    UITabBar.appearance().tintColor = .black
+    tabBar.unselectedItemTintColor = .lightGray
+    
+    
     }
+    
+    func checkUserIsLogin() {
+        
+        
+        if Auth.auth().currentUser == nil {
+            print("Nil")
+            return
+        } else {
+            
+            
+            if UserDefaults.standard.object(forKey: kCURRENTUSER) == nil {
+                /// set currentUser
+          
+                fetchCurrentUser(uid: Auth.auth().currentUser!.uid)
+                
+                return
+            }
+            
+            configureTabController()
+            
+        }
+    }
+    
+    private func fetchCurrentUser(uid : String) {
+        
+        FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid) { (error) in
+            self.configureTabController()
+        }
+   
+       }
     
     private func createnavConroller(image : UIImage?, title : String, rootViewController  : UIViewController) -> UINavigationController {
         

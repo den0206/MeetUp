@@ -35,6 +35,8 @@
 		3AD0A34E24C993CB009FB7D0 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */; };
 		3AD0A35024C99B6F009FB7D0 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */; };
 		3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */; };
+		3AD7264024D049590097CF99 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7263F24D049590097CF99 /* NotificationController.swift */; };
+		3AD7264224D04A5D0097CF99 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7264124D04A5D0097CF99 /* NotificationCell.swift */; };
 		3AEBEB9E24CEFB8A0037A075 /* LikeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */; };
 		B9B92D22F2BD83B3BBA18265 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786467AC5395C5E23901881 /* Pods_MeetUp.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		3AD0A34D24C993CB009FB7D0 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		3AD0A34F24C99B6F009FB7D0 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoroge.swift; sourceTree = "<group>"; };
+		3AD7263F24D049590097CF99 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3AD7264124D04A5D0097CF99 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeObject.swift; sourceTree = "<group>"; };
 		6786467AC5395C5E23901881 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				3A411C1624CBEA060041F402 /* CardViewController.swift */,
 				3AD0A34924C98E5A009FB7D0 /* SettingsViewController.swift */,
 				3A911BC224CC5C96002AD0BD /* ProfileViewController.swift */,
+				3AD7263F24D049590097CF99 /* NotificationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				3AD0A34C24C993AB009FB7D0 /* Settings */,
 				3A911BC424CC6037002AD0BD /* ProfileHeaderCell.swift */,
 				3A911BC824CC6F2A002AD0BD /* ProfileImageCell.swift */,
+				3AD7264124D04A5D0097CF99 /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 				3A63CB4924C88690005E8A6D /* GradientButton.swift in Sources */,
 				3A411C1924CBEBD50041F402 /* UserCard.swift in Sources */,
 				3A0AB44024C96081001CF96E /* MainTabBarController.swift in Sources */,
+				3AD7264024D049590097CF99 /* NotificationController.swift in Sources */,
 				3A1EF64624C88D7B0018A5D5 /* SignUpViewController.swift in Sources */,
 				3AEBEB9E24CEFB8A0037A075 /* LikeObject.swift in Sources */,
 				3A63CB2B24C871F8005E8A6D /* AppDelegate.swift in Sources */,
@@ -358,6 +365,7 @@
 				3A57E80B24CF03B5003FE64E /* GlobalFunctions.swift in Sources */,
 				3A63CB2D24C871F8005E8A6D /* SceneDelegate.swift in Sources */,
 				3A911BC324CC5C96002AD0BD /* ProfileViewController.swift in Sources */,
+				3AD7264224D04A5D0097CF99 /* NotificationCell.swift in Sources */,
 				3A0AB43C24C95289001CF96E /* Refernce.swift in Sources */,
 				3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */,
 				3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */,

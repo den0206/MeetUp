@@ -165,13 +165,19 @@ class User : Equatable {
     class func loginUser(withEmal : String, password : String, completion :  @escaping(_ error: Error?) -> Void) {
         
         Auth.auth().signIn(withEmail: withEmal, password: password) { (result, error) in
-            guard error == nil else {completion(error)
+            
+            if error != nil {
+                completion(error)
                 return
             }
+            
             guard let uid = result?.user.uid else {return}
             print(uid)
+            print("Set")
             /// set currentUser
-            FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid)
+            FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid) { (error) in
+                completion(error)
+            }
             
         
         }

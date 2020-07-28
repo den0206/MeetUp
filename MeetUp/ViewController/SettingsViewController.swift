@@ -332,7 +332,7 @@ extension SettingsViewController : ContentCellDelegate {
             
             let loginVC  = LoginViewController()
 
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 loginVC.modalPresentationStyle = .fullScreen
                 
                 self.present(loginVC, animated: true, completion: nil)

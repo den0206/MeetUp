@@ -16,7 +16,7 @@ class FIrebaseListner {
     
     //MARK: - User
     
-    func downloadCurrnetuserFromFirestore(uid : String) {
+    func downloadCurrnetuserFromFirestore(uid : String, comeltion :  @escaping(_ error : Error?) -> Void) {
           
           FirebaseReference(reference: .User).document(uid).getDocument { (snapshot, error) in
               
@@ -77,8 +77,78 @@ class FIrebaseListner {
         
     }
     
+    func fetchSpecificUser(userId : String, completion :  @escaping(User) -> Void) {
+        
+        FirebaseReference(reference: .User).document(userId).getDocument { (snapshot, error) in
+            
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            guard let snapshot = snapshot else {return}
+            
+            if snapshot.exists {
+                let user = User(_dictionary: snapshot.data()! as NSDictionary)
+                completion(user)
+            }
+        }
+    }
+    
+    func fetchMultipleUser(userIds : [String], completion :  @escaping([User]) -> Void) {
+        
+        var users = [User]()
+        
+        userIds.forEach { (userId) in
+            
+            FirebaseReference(reference: .User).document(userId).getDocument { (snapshot, error) in
+                
+                if error != nil {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                guard let snapshot = snapshot else {return}
+                
+                if snapshot.exists {
+                    
+                    let user = User(_dictionary: snapshot.data()! as NSDictionary)
+                    users.append(user)
+                    
+                    if users.count == userIds.count {
+                        completion(users)
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
 
     //MARK: - Like
+    
+      func fetchCurrentUserLiked(completion :  @escaping(_ likedUserIds : [String]) -> Void) {
+          FirebaseReference(reference: .Like).whereField(kLIKEDUSEID, isEqualTo: User.currentId()).getDocuments { (snapshot, error) in
+              
+            var likedIds = [String]()
+            guard let snapshot = snapshot else {return}
+            
+            guard !snapshot.isEmpty else {completion(likedIds) ; return}
+            
+            snapshot.documents.forEach { (doc) in
+                let data = doc.data()
+                let likedId = data[kUID] as! String
+                
+                likedIds.append(likedId)
+
+                if snapshot.documents.count == likedIds.count {
+                    completion(likedIds)
+                }
+            }
+          }
+      }
+      
     
     func checkIfUserLikedMe(userId : String,completion :  @escaping(_ didLike : Bool) -> Void) {
         FirebaseReference(reference: .Like).whereField(kLIKEDUSEID, isEqualTo: User.currentId()).whereField(kUID, isEqualTo: userId).getDocuments { (snapshot, error) in

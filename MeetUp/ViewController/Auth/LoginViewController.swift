@@ -185,12 +185,14 @@ class LoginViewController : UIViewController {
     //MARK: -Navigation
     
     private func goToApp() {
+        
+        
         let mainVC = MainTabBarController()
         mainVC.modalPresentationStyle = .fullScreen
+        mainVC.checkUserIsLogin()
         
-        DispatchQueue.main.async {
-            self.present(mainVC, animated: true, completion: nil)
-            
-        }
+        self.present(mainVC, animated: true, completion: nil)
+        
+        
     }
 }
