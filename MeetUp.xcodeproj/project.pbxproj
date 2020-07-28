@@ -37,6 +37,8 @@
 		3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */; };
 		3AD7264024D049590097CF99 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7263F24D049590097CF99 /* NotificationController.swift */; };
 		3AD7264224D04A5D0097CF99 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7264124D04A5D0097CF99 /* NotificationCell.swift */; };
+		3AD7264424D05C040097CF99 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7264324D05C040097CF99 /* Match.swift */; };
+		3AD7264624D05CCA0097CF99 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7264524D05CCA0097CF99 /* MatchViewController.swift */; };
 		3AEBEB9E24CEFB8A0037A075 /* LikeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */; };
 		B9B92D22F2BD83B3BBA18265 /* Pods_MeetUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786467AC5395C5E23901881 /* Pods_MeetUp.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +77,8 @@
 		3AD3782F24CAA4BB0072EAF6 /* FileStoroge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStoroge.swift; sourceTree = "<group>"; };
 		3AD7263F24D049590097CF99 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		3AD7264124D04A5D0097CF99 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		3AD7264324D05C040097CF99 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		3AD7264524D05CCA0097CF99 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeObject.swift; sourceTree = "<group>"; };
 		6786467AC5395C5E23901881 /* Pods_MeetUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA1FCD0B42AA811B56F58C1 /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			children = (
 				3A2DCFEA24C93382002B1C6C /* User.swift */,
 				3AEBEB9D24CEFB8A0037A075 /* LikeObject.swift */,
+				3AD7264324D05C040097CF99 /* Match.swift */,
 				3A411C1C24CBED5A0041F402 /* CardViews */,
 			);
 			path = Model;
@@ -183,6 +188,7 @@
 				3AD0A34924C98E5A009FB7D0 /* SettingsViewController.swift */,
 				3A911BC224CC5C96002AD0BD /* ProfileViewController.swift */,
 				3AD7263F24D049590097CF99 /* NotificationController.swift */,
+				3AD7264524D05CCA0097CF99 /* MatchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -367,9 +373,11 @@
 				3A911BC324CC5C96002AD0BD /* ProfileViewController.swift in Sources */,
 				3AD7264224D04A5D0097CF99 /* NotificationCell.swift in Sources */,
 				3A0AB43C24C95289001CF96E /* Refernce.swift in Sources */,
+				3AD7264424D05C040097CF99 /* Match.swift in Sources */,
 				3A46EC8424CC058B00D92BC9 /* UserCardContentView.swift in Sources */,
 				3A63CB4524C8795E005E8A6D /* Extensions.swift in Sources */,
 				3AD0A34A24C98E5A009FB7D0 /* SettingsViewController.swift in Sources */,
+				3AD7264624D05CCA0097CF99 /* MatchViewController.swift in Sources */,
 				3A0AB43E24C95391001CF96E /* Listner.swift in Sources */,
 				3A2DCFED24C93D54002B1C6C /* Constants.swift in Sources */,
 				3AD3783024CAA4BB0072EAF6 /* FileStoroge.swift in Sources */,
