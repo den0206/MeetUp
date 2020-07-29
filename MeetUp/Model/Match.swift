@@ -21,7 +21,7 @@ struct Match {
     }
     
     func savrTofireStore() {
-        FirebaseReference(reference: .Like).document(self.id).setData(self.dictionary)
+        FirebaseReference(reference: .Match).document(self.id).setData(self.dictionary)
     }
     
 }

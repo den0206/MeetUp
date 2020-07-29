@@ -52,7 +52,7 @@ class FIrebaseListner {
         
         
         guard query != nil else { completion(users, nil); return}
-        
+
         query.getDocuments { (snapshot, erro) in
             guard let snapshot = snapshot else {return}
             
@@ -159,6 +159,13 @@ class FIrebaseListner {
         }
     }
     
+    //MARK: - Match
+    
+    func saveMatch(userId : String) {
+        
+        let match = Match(id: UUID().uuidString, memberIDs: [User.currentId(), userId], date: Date())
+        match.savrTofireStore()
+    }
     
 
 }

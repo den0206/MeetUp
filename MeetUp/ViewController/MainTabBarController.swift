@@ -64,6 +64,7 @@ class MainTabBarController : UITabBarController {
     private func fetchCurrentUser(uid : String) {
         
         FIrebaseListner.saherd.downloadCurrnetuserFromFirestore(uid: uid) { (error) in
+            print("current")
             self.configureTabController()
         }
    

@@ -318,10 +318,11 @@ class User : Equatable {
         
         guard let dictionary = UserDefaults.standard.object(forKey: kCURRENTUSER) else {return}
         print(dictionary)
-        
+//
         let userObject = (dictionary as! NSDictionary).mutableCopy() as! NSMutableDictionary
         userObject.setValuesForKeys(withValue)
-        
+      
+      
         FirebaseReference(reference: .User).document(User.currentId()).updateData(withValue) { (error) in
             
             if error == nil {

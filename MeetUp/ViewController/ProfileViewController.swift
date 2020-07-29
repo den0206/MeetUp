@@ -152,6 +152,14 @@ extension ProfileViewController : ProfileHeaderCellDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    private func showMatchView(user : User) {
+          
+          let matchVC = MatchViewController()
+     
+          matchVC.user = user
+          self.present(matchVC, animated: true, completion: nil)
+      }
+      
  
  
 }

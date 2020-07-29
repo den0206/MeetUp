@@ -153,6 +153,8 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
             FIrebaseListner.saherd.checkIfUserLikedMe(userId: user.uid) { (didLike) in
                 if didLike {
                     print("Match")
+                    FIrebaseListner.saherd.saveMatch(userId: user.uid)
+                    self.showMatchView(user: user)
                 }
             }
             
@@ -179,6 +181,14 @@ extension CardViewController : SwipeCardStackDelegate, SwipeCardStackDataSource 
         
         showReserve = true
         layoutCardStackView()
+    }
+    
+    private func showMatchView(user : User) {
+        
+        let matchVC = MatchViewController()
+   
+        matchVC.user = user
+        self.present(matchVC, animated: true, completion: nil)
     }
     
     

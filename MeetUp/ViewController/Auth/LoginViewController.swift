@@ -189,9 +189,14 @@ class LoginViewController : UIViewController {
         
         let mainVC = MainTabBarController()
         mainVC.modalPresentationStyle = .fullScreen
-        mainVC.checkUserIsLogin()
         
-        self.present(mainVC, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            mainVC.checkUserIsLogin()
+            self.present(mainVC, animated: true, completion: nil)
+            
+        }
+        
         
         
     }

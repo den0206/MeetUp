@@ -10,19 +10,22 @@ import UIKit
 
 class MatchViewController : UIViewController {
     
+    var user : User?
+    
     //MARK: - Parts
     
     private let contentView : UIView = {
         let view = UIView()
 //        view.backgroundColor = .lightGray
         view.backgroundColor = .clear
-        
+        view.applyShadow(radius: 8, opacity: 0.2, offset: CGSize(width: 0, height: 2))
         return view
     }()
     
     private let backgroundImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = 10
         iv.image = #imageLiteral(resourceName: "matchBackground")
         return iv
     }()
@@ -36,7 +39,7 @@ class MatchViewController : UIViewController {
     
     private let avatarImageView : UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.image = #imageLiteral(resourceName: "avatar")
         return iv
         
@@ -80,6 +83,7 @@ class MatchViewController : UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        loadUserDate()
     }
     
     //MARK: - UI
@@ -95,6 +99,7 @@ class MatchViewController : UIViewController {
         
         contentView.addSubview(matchImage)
         matchImage.center(inView: contentView)
+        
         
         contentView.addSubview(avatarImageView)
         avatarImageView.centerX(inView: contentView)
@@ -116,5 +121,12 @@ class MatchViewController : UIViewController {
         contentView.addSubview(buttonStack)
         buttonStack.anchor(top : countryLabel.bottomAnchor,left : contentView.leftAnchor,bottom: contentView.bottomAnchor,right: contentView.rightAnchor,paddingTop: 24,paddingLeft: 16,paddingBottom: 24,paddingRight: 8)
     }
+    
+    private func  loadUserDate() {
+        avatarImageView.image = user?.avatar
+        
+        
+    }
+
     
 }
